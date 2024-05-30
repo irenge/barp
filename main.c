@@ -3,22 +3,20 @@
 #include <linux/sched/signal.h>
 
 #define NUM 600
-  
-static struct task_struct *task;
+
 static void loop_through(struct task_struct *ptask);
 
 static void loop_through(struct task_struct *ptask) {
 	for_each_process(ptask) {
 		if(ptask->pid < NUM) 
-		//if(ptask->prio < 50)
 			continue;
-		pr_info("%d\t%s\t%d\t%d\t%d\n", ptask->pid, ptask->comm, ptask->ptrace, ptask->prio, ptask->exit_code);
+		pr_info("%d\t%s\t%d\t%d\n", ptask->pid, ptask->comm, ptask->prio, ptask->exit_code);
 	}
 
 }
 static int __init barp_init(void){
 
-//	struct task_struct *task = NULL;
+	struct task_struct *task = NULL;
 
 	pr_info("\nModule initialized\n");
 
